@@ -1,0 +1,21 @@
+<ul class="l-list l-list--collapsed">
+  <li class="l-list__item" ng-repeat="month in months">
+    <div class="l-justified">
+      <div class="l-justified__item"><button>{{month.name}}</button></div>
+
+      <div class="l-justified__item">
+        <ul class="l-list l-list--collapsed">
+          <li class="l-list__item" ng-repeat="week in month.weeks">
+            <button>
+              <div class="l-list-inline l-list-inline--collapsed">
+                <div class="l-list-inline__item" ng-repeat="day in week.days">{{day}}</div>
+
+                <div class="l-list-inline__item">%graph%</div>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
