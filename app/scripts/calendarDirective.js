@@ -1,65 +1,26 @@
-angular.module('KnowledgeBits')
-  .directive('calendar', function() {
+angular.module('InfoMap')
+  .directive('calendar', function(CalendarService) {
     'use strict';
 
     return {
       restrict: 'E',
       templateUrl: 'templates/calendar.html',
       scope: {
-
+        selection: '='
       },
       controller: function($scope) {
-        // prepopulate:
-        $scope.months = [
-          name: 'Dec 2014',
-          weeks: [
-            
-          ]
-        ];
+        $scope.months = CalendarService.load();
+        $scope.maxShares = CalendarService.getMax();
 
-        var mockWeeks = [
-          {
-            start: '2014-12-30',
-            nTweets: 30
-          },
-          {
-            start: '2015-01-06',
-            nTweets: 26
-          }
-        ];
+        $scope.selectMonth = function(month) {
+          $scope.selection = month;
+          $scope.selection.type = 'month';
+        };
 
-        function createDays(startStr) {
-          var day = moment(startStr),
-              color = randomColor({luminosity: 'light'}),
-              week = [];
-
-          for (var i = 0; i<7; i++) {
-
-            week.push({
-              day: day.date(),
-              color: color
-            });
-
-            day.add(1, 'd');
-          }
-
-          return week;
-        }
-
-        $scope.weeks = [];
-        angular.forEach(mockWeeks, function(item, index) {
-          $scope.weeks.push({
-            days: createDays(item.start),
-            start: item.start,
-            nTweets: item.nTweets,
-            color: randomColor()
-          });
-        });
-
-        $scope.selection = [];
-
-        $scope.MonthsStartIndices = [];
-        $scope.MonthsEndIndices = [];
+        $scope.selectWeek = function(week) {
+          $scope.selection = week;
+          $scope.selection.type = 'week';
+        };
       },
       link: function($scope, elem, attrs) {
         

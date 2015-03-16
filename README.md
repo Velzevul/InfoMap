@@ -1,1 +1,1 @@
-KnowledgeBits
+InfoMap

@@ -1,0 +1,11 @@
+.app-sidebar {
+  position: fixed;
+  top: $global-baseline * 4; bottom: 0;
+  left: 0;
+  width: $global-baseline * 25;
+
+  overflow: auto;
+  
+  background: white;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),2px 4px 8px rgba(0,0,0,.28);
+}

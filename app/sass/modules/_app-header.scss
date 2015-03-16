@@ -1,0 +1,55 @@
+.app-header {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0; right: 0;
+  height: $global-baseline * 4;
+  line-height: $global-baseline * 2;
+
+  color: white;
+
+  background: lighten($color-bg-secondary, 5%);
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+
+  &__calendar {
+    padding: $global-baseline $global-baseline*2;
+    width: $global-baseline * 25;
+
+    text-align: center;
+
+    border-right: 1px solid darken($color-bg-secondary, 5%);
+  }
+
+  &__current-program {
+    padding: 0 $global-baseline*2;
+    
+    border-left: 1px solid darken($color-bg-secondary, 5%);
+  }
+
+  &__app-name {
+    padding: $global-baseline $global-baseline*2;
+
+    font-size: 17px;
+  }
+}
+
+.ah-select {
+  display: block;
+  position: relative;
+  padding: $global-baseline 0;
+
+  &__select {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+  
+    top: 0; bottom: 0;
+    right: 0; left: 0;
+  
+    opacity: 0;
+  }
+
+  &__dummy {
+    
+  }
+}

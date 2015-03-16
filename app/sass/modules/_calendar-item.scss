@@ -1,0 +1,60 @@
+.calendar-item{
+  padding: $global-baseline * 2 $global-baseline;
+
+  border-top:    1px solid transparent;
+  border-bottom: 1px solid $color-border;
+
+  &__month {
+    padding-left: $global-baseline * 2;
+
+    font-weight: 600;
+    font-size: 13px;
+
+    cursor: pointer;
+  }
+}
+  .calendar-item--selected {
+    .ci-week--first {
+      border-top-color: $color-dc-primary;
+    }
+
+    .ci-week--last {
+      border-bottom-color: $color-dc-primary;
+    }
+  }
+
+.ci-week {
+  padding-left: $global-baseline * 2;
+
+  border-top:    1px solid transparent;
+  border-bottom: 1px solid transparent;
+  
+  cursor: pointer;
+
+  &__day {
+    width: 30px;
+    height: 30px;
+
+    font-size: $global-baseline;
+    line-height: 30px;
+
+    text-align: left;
+  }
+
+}
+  .ci-shares {
+    width: 30px;
+    height: 30px;
+    padding: 10px 0;
+
+    border-left: 1px solid $color-border;
+
+    &__inner {
+      height: 100%;
+
+      background: $color-dc-primary;
+    }
+  }
+  .ci-week--selected {
+    border-color: $color-dc-primary;
+  }

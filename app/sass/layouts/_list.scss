@@ -46,24 +46,24 @@ $list-modifiers: (
 .l-list-inline {
   margin: 0;
   padding: 0;
-  margin-bottom: - $global-baseline * 2;
+  // margin-bottom: - $global-baseline * 2;
   margin-left: - $global-baseline * 2;
   list-style: none;
 
   & > &__item {
     display: inline-block;
     vertical-align: top;
-    margin-bottom: $global-baseline * 2;
+    // margin-bottom: $global-baseline * 2;
     margin-left: $global-baseline * 2;
   }
 }
   @each $modifier-name, $modifier-margin in $list-modifiers {
     .l-list-inline--#{$modifier-name} {
-      margin-bottom: - $modifier-margin;
+      // margin-bottom: - $modifier-margin;
       margin-left: - $modifier-margin;
 
       & > .l-list-inline__item {
-        margin-bottom: $modifier-margin;
+        // margin-bottom: $modifier-margin;
         margin-left: $modifier-margin;
       }
     }

@@ -1,0 +1,61 @@
+.cluster-view {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  &__title {
+    font-weight: 600;
+  }
+}
+
+.cv-item {
+  background: white;
+  box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+
+
+  &__body {
+    padding: $global-baseline * 3/2;
+    padding-left: 0;
+  }
+
+  &__title {
+    
+  }
+
+  &__thumb {
+    display: block;
+    width: $global-baseline * 8;
+    height: $global-baseline * 5;
+
+    border: 1px solid $color-border;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  &__details-link {
+    color: $color-dc-primary;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.ci-stats {
+  display: block;
+  width: $global-baseline * 10;
+  height: $global-baseline * 10;
+
+  .ci-stats__count {
+    color: $color-tx;
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  .ci-stats__shares {
+    color: $color-tx;
+    font-size: 12px;
+  }
+}

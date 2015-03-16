@@ -1,0 +1,35 @@
+.list-view {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__section {
+    background: white;
+    box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  }
+}
+  .lv-item {
+    padding: $global-baseline * 3/2;
+    margin-bottom: -1px;
+
+    border-bottom: 1px solid $color-border;
+
+    &__user {
+      font-weight: 600;
+
+      color: lighten($color-tx, 30%)
+    }
+
+    &__host {
+      color: $color-dc-primary;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }

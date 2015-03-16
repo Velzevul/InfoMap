@@ -1,21 +1,29 @@
-<ul class="l-list l-list--collapsed">
-  <li class="l-list__item" ng-repeat="month in months">
-    <div class="l-justified">
-      <div class="l-justified__item"><button>{{month.name}}</button></div>
+<div  class="calendar-item" 
+      ng-class="{'calendar-item--selected': selection == month}"
+      ng-repeat="month in months">
+  <div class="l-block-small">
+    <div class="calendar-item__month" ng-click="selectMonth(month)">{{month.label}}</div>
+  </div>
 
-      <div class="l-justified__item">
-        <ul class="l-list l-list--collapsed">
-          <li class="l-list__item" ng-repeat="week in month.weeks">
-            <button>
-              <div class="l-list-inline l-list-inline--collapsed">
-                <div class="l-list-inline__item" ng-repeat="day in week.days">{{day}}</div>
-
-                <div class="l-list-inline__item">%graph%</div>
-              </div>
-            </button>
-          </li>
-        </ul>
+  <ul class="l-list l-list--collapsed">
+    <li class="l-list__item" ng-repeat="week in month.weeks">
+      <div  class="ci-week" 
+            ng-class="{'ci-week--selected': selection == week,
+                       'ci-week--first':    $first,
+                       'ci-week--last':     $last}"
+            ng-click="selectWeek(week)">
+        <div class="l-list-inline l-list-inline--collapsed">
+          <div class="l-list-inline__item is-middle-aligned" ng-repeat="day in week.days">
+            <div class="ci-week__day">{{day.label}}</div>
+          </div>
+      
+          <div class="l-list-inline__item is-middle-aligned">
+            <div class="ci-shares">
+              <div class="ci-shares__inner" style="width: {{100*week.nTweets/maxShares}}%"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
