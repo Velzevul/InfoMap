@@ -1,0 +1,27 @@
+.details-popup {
+  position: fixed;
+  top: -200px;
+  left: -300px;
+
+  padding: $global-baseline;
+
+  background: white;
+  border: 1px solid  $color-border;
+  width: 300px;
+  // height: 100px;
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__thumb {
+    display: block;
+    width: $global-baseline * 8;
+    height: $global-baseline * 5;
+
+    border: 1px solid $color-border;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}

@@ -14,13 +14,7 @@
   }
 }
   .calendar-item--selected {
-    .ci-week--first {
-      border-top-color: $color-dc-primary;
-    }
-
-    .ci-week--last {
-      border-bottom-color: $color-dc-primary;
-    }
+    background: rgba($color-dc-primary, 0.2);
   }
 
 .ci-week {
@@ -43,7 +37,7 @@
 
 }
   .ci-shares {
-    width: 30px;
+    width: 20px;
     height: 30px;
     padding: 10px 0;
 
@@ -56,5 +50,6 @@
     }
   }
   .ci-week--selected {
-    border-color: $color-dc-primary;
+    border-color: rgba($color-dc-primary, 0.4);
+    background: rgba($color-dc-primary, 0.2);
   }

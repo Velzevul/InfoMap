@@ -12,14 +12,12 @@ angular.module('InfoMap')
         $scope.months = CalendarService.load();
         $scope.maxShares = CalendarService.getMax();
 
-        $scope.selectMonth = function(month) {
-          $scope.selection = month;
-          $scope.selection.type = 'month';
+        $scope.current = {
+          label: 'Current week'
         };
 
-        $scope.selectWeek = function(week) {
-          $scope.selection = week;
-          $scope.selection.type = 'week';
+        $scope.select = function(target) {
+          $scope.selection = target;
         };
       },
       link: function($scope, elem, attrs) {

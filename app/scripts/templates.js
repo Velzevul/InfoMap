@@ -1,4 +1,4 @@
-angular.module('app-templates', ['templates/calendar.html', 'templates/clusterView.html', 'templates/clusterViewStats.html', 'templates/listView.html']);
+angular.module('app-templates', ['templates/calendar.html', 'templates/clusterView.html', 'templates/clusterViewEncapsulated.html', 'templates/clusterViewStats.html', 'templates/listView.html']);
 
 angular.module("templates/calendar.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/calendar.html",
@@ -6,16 +6,14 @@ angular.module("templates/calendar.html", []).run(["$templateCache", function($t
     "      ng-class=\"{'calendar-item--selected': selection == month}\"\n" +
     "      ng-repeat=\"month in months\">\n" +
     "  <div class=\"l-block-small\">\n" +
-    "    <div class=\"calendar-item__month\" ng-click=\"selectMonth(month)\">{{month.label}}</div>\n" +
+    "    <div class=\"calendar-item__month\" ng-click=\"select(month)\">{{month.label}}</div>\n" +
     "  </div>\n" +
     "\n" +
     "  <ul class=\"l-list l-list--collapsed\">\n" +
     "    <li class=\"l-list__item\" ng-repeat=\"week in month.weeks\">\n" +
     "      <div  class=\"ci-week\" \n" +
-    "            ng-class=\"{'ci-week--selected': selection == week,\n" +
-    "                       'ci-week--first':    $first,\n" +
-    "                       'ci-week--last':     $last}\"\n" +
-    "            ng-click=\"selectWeek(week)\">\n" +
+    "            ng-class=\"{'ci-week--selected': selection == week}\"\n" +
+    "            ng-click=\"select(week)\">\n" +
     "        <div class=\"l-list-inline l-list-inline--collapsed\">\n" +
     "          <div class=\"l-list-inline__item is-middle-aligned\" ng-repeat=\"day in week.days\">\n" +
     "            <div class=\"ci-week__day\">{{day.label}}</div>\n" +
@@ -30,6 +28,11 @@ angular.module("templates/calendar.html", []).run(["$templateCache", function($t
     "      </div>\n" +
     "    </li>\n" +
     "  </ul>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div  class=\"calendar-item\"\n" +
+    "      ng-class=\"{'calendar-item--selected': selection == current}\">\n" +
+    "  <div class=\"calendar-item__month\" ng-click=\"select(current)\">{{current.label}}</div>\n" +
     "</div>");
 }]);
 
@@ -70,6 +73,31 @@ angular.module("templates/clusterView.html", []).run(["$templateCache", function
     "    </div>\n" +
     "  </div>\n" +
     "</div>");
+}]);
+
+angular.module("templates/clusterViewEncapsulated.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/clusterViewEncapsulated.html",
+    "<div id=\"cluster-encapsulated\"></div>\n" +
+    "\n" +
+    "<section id=\"details-popup\" class=\"details-popup\" ng-show=\"details\">\n" +
+    "  <div class=\"l-block-small\">\n" +
+    "    <h1 class=\"details-popup__title\">\n" +
+    "      {{details.title}}\n" +
+    "    </h1>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"l-media\">\n" +
+    "    <div class=\"l-media__figure\">\n" +
+    "      <div class=\"details-popup__thumb\" style=\"background-image: url({{details.thumb}});\"></div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"l-media__body\">\n" +
+    "      <div class=\"l-list-inline\" ng-if=\"details.activeLink\">\n" +
+    "        <div class=\"l-list-inline__item\">{{details.activeLink.host}} by @{{details.activeLink.user}}</div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</section>");
 }]);
 
 angular.module("templates/clusterViewStats.html", []).run(["$templateCache", function($templateCache) {

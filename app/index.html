@@ -20,14 +20,23 @@
               <span class="ah-select__dummy">Zbrush</span>
 
               <select name="" id="" class="ah-select__select">
-                <option value="">Zbrush</option>
+                <option value="0">baseline</option>
+                <option value="1">encapsulated - inclusive</option>
+                <option value="2">encapsulated - tooltip</option>
+                <option value="3">encapsulated - label</option>
+                <option value="4">separated - inclusive</option>
+                <option value="5">separated - tooltip</option>
+                <option value="6">separated - label</option>
+                <option value="7">structured - inclusive</option>
+                <option value="8">structured - tooltip</option>
+                <option value="9">structured - label</option>
               </select>
             </label>
           </div>
         </div>
 
         <div class="l-tricol__mid">
-          <div class="app-header__app-name">InfoMap</div>
+          <div class="app-header__app-name">InfoMap: {{ getSelectionLabel() }}</div>
         </div>
       </div>
     </div>
@@ -37,13 +46,8 @@
     </div>
 
     <main class="app-body">
-      <div ng-if="selection && selection.isCurrent">
-        <list-view selection="selection"></list-view>
-      </div>
-
-      <div ng-if="selection && !selection.isCurrent">
-        <cluster-view selection="selection"></cluster-view>
-      </div>
+      <!-- <baseline-view selection="selection"></baseline-view> -->
+      <cluster-view-encapsulated selection="selection"></cluster-view-encapsulated>
     </main>
 
     <script src="jquery/dist/jquery.js"></script>
@@ -61,10 +65,15 @@
     <script src="scripts/calendarService.js"></script>
     <script src="scripts/dataService.js"></script>
     <script src="scripts/hostService.js"></script>
+    <script src="scripts/userService.js"></script>
+
     <script src="scripts/calendarDirective.js"></script>
     <script src="scripts/appSidebarDirective.js"></script>
+    <script src="scripts/clusterViewEncapsulatedDirective.js"></script>
+    <!--
     <script src="scripts/listViewDirective.js"></script>
     <script src="scripts/clusterViewDirective.js"></script>
     <script src="scripts/clusterViewStatsDirective.js"></script>
+    -->
   </body>
 </html>

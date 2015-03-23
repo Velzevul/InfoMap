@@ -1,0 +1,23 @@
+.svg {
+  display: block;
+}
+
+.svg-circle--root {
+  fill: none;
+}
+
+.svg-circle {
+  fill: white;
+  stroke: darken($color-border, 20%);
+}
+
+.svg-circle--leaf {
+  fill: white;
+  cursor: pointer;
+  stroke: darken($color-border, 20%);
+}
+
+.svg-user {
+  stroke: darken($color-border, 20%);
+  pointer-events: none;
+}
