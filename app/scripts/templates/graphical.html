@@ -1,5 +1,9 @@
 <div id="cluster-encapsulated"></div>
 
+<div class="searchbox">
+  <input class="searchbox__input" placeholder="search here" ng-model="filter" ng-keydown="doSearch($event)">
+</div>
+
 <section id="details-popup" class="details-popup" ng-show="details">
   <div class="l-block-small">
     <h1 class="details-popup__title">

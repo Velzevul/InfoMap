@@ -1,0 +1,18 @@
+.searchbox {
+  position: absolute;
+  top: $global-baseline * 2;
+  left: 50%;
+  width: $global-baseline * 40;
+  margin-left: - $global-baseline * 20;
+
+  &__input {
+    @include appearance(none);
+    display: block;
+    width: 100%;
+    padding: $global-baseline/2;
+
+    background: white;
+    border: 1px solid $color-border;
+    border-radius: 3px;
+  }
+}

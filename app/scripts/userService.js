@@ -2,7 +2,7 @@ angular.module('InfoMap')
   .factory('UserService', function() {
     'use strict';
 
-    var mock = {
+    var mockTrain = {
       'raulpercy': {
         avatar: 'https://pbs.twimg.com/profile_images/1768824664/raul_400x400.jpg'
       },
@@ -87,8 +87,8 @@ angular.module('InfoMap')
     };
 
     return {
-      get: function() {
-        return mock;
+      getTrain: function() {
+        return mockTrain;
       }
     }
   });

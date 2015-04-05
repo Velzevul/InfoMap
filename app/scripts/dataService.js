@@ -2,7 +2,7 @@ angular.module('InfoMap')
   .factory('DataService', function() {
     'use strict';
 
-    var mock = [
+    var mockTrain = [
       {
         id: 1,
         title: "ZBrush Sculpting Tutorial for Beginners: Organic & Hard Surface T-Rex",
@@ -366,12 +366,12 @@ angular.module('InfoMap')
     ];
 
     return {
-      getGraphical: function() {
+      getGraphicalTrain: function() {
         var data = {
           children: []
         };
 
-        mock.forEach(function(item) {
+        mockTrain.forEach(function(item) {
           var dataItem = {
             id: item.id,
             title: item.title,
@@ -396,6 +396,26 @@ angular.module('InfoMap')
           dataItem.children = nest;
 
           data.children.push(dataItem);
+        });
+
+        return data;
+      },
+      getListTrain: function() {
+        var data = [];
+
+        mockTrain.forEach(function(item) {
+          item.posts.forEach(function(post) {
+            post.users.forEach(function(user) {
+              var dataItem = {
+                title: item.title,
+                thumb: item.thumb,
+                user: user.name,
+                host: post.host
+              };
+
+              data.push(dataItem);
+            });
+          });
         });
 
         return data;

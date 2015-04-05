@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="modernizr/modernizr.js"></script>
   </head>
-  <body class="app" ng-controller="mainController">
-    <div class="app-header">
+  <body class="app">
+    <!-- <div class="app-header">
       <div class="l-tricol">
         <div class="l-tricol__left">
           <div class="app-header__calendar">Calendar</div>
@@ -39,37 +39,37 @@
           <div class="app-header__app-name">InfoMap: {{ getSelectionLabel() }}</div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="app-sidebar" app-sidebar>
+    <!-- <div class="app-sidebar" app-sidebar>
       <calendar data="month" selection="selection"></calendar>
-    </div>
+    </div> -->
 
     <main class="app-body">
       <!-- <baseline-view selection="selection"></baseline-view> -->
-      <cluster-view-encapsulated selection="selection"></cluster-view-encapsulated>
+      <ng-view></ng-view>
     </main>
 
     <script src="jquery/dist/jquery.js"></script>
     <script src="randomcolor/randomColor.js"></script>
     <script src="momentjs/moment.js"></script>
     <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
     <script src="d3/d3.js"></script>
+    <script src="seedrandom/seedrandom.js"></script>
+    <script src="scripts/shuffle.js"></script>
     
     <script src="scripts/templates.js"></script>
 
     <script src="scripts/app.js"></script>
 
-    <script src="scripts/mainController.js"></script>
+    <script src="scripts/graphicalController.js"></script>
+    <script src="scripts/listController.js"></script>
 
-    <script src="scripts/calendarService.js"></script>
     <script src="scripts/dataService.js"></script>
     <script src="scripts/hostService.js"></script>
     <script src="scripts/userService.js"></script>
 
-    <script src="scripts/calendarDirective.js"></script>
-    <script src="scripts/appSidebarDirective.js"></script>
-    <script src="scripts/clusterViewEncapsulatedDirective.js"></script>
     <!--
     <script src="scripts/listViewDirective.js"></script>
     <script src="scripts/clusterViewDirective.js"></script>

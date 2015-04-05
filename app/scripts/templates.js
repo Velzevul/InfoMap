@@ -1,4 +1,4 @@
-angular.module('app-templates', ['templates/calendar.html', 'templates/clusterView.html', 'templates/clusterViewEncapsulated.html', 'templates/clusterViewStats.html', 'templates/listView.html']);
+angular.module('app-templates', ['templates/calendar.html', 'templates/clusterView.html', 'templates/clusterViewStats.html', 'templates/graphical.html', 'templates/list.html', 'templates/listView.html']);
 
 angular.module("templates/calendar.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/calendar.html",
@@ -75,9 +75,18 @@ angular.module("templates/clusterView.html", []).run(["$templateCache", function
     "</div>");
 }]);
 
-angular.module("templates/clusterViewEncapsulated.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/clusterViewEncapsulated.html",
+angular.module("templates/clusterViewStats.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/clusterViewStats.html",
+    "<div class=\"ci-stats\" id=\"item-{{item.id}}\"></div>");
+}]);
+
+angular.module("templates/graphical.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/graphical.html",
     "<div id=\"cluster-encapsulated\"></div>\n" +
+    "\n" +
+    "<div class=\"searchbox\">\n" +
+    "  <input class=\"searchbox__input\" placeholder=\"search here\" ng-model=\"filter\" ng-keydown=\"doSearch($event)\">\n" +
+    "</div>\n" +
     "\n" +
     "<section id=\"details-popup\" class=\"details-popup\" ng-show=\"details\">\n" +
     "  <div class=\"l-block-small\">\n" +
@@ -100,9 +109,11 @@ angular.module("templates/clusterViewEncapsulated.html", []).run(["$templateCach
     "</section>");
 }]);
 
-angular.module("templates/clusterViewStats.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/clusterViewStats.html",
-    "<div class=\"ci-stats\" id=\"item-{{item.id}}\"></div>");
+angular.module("templates/list.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/list.html",
+    "<div ng-repeat=\"post in posts\">\n" +
+    "  {{post.title}}\n" +
+    "</div>");
 }]);
 
 angular.module("templates/listView.html", []).run(["$templateCache", function($templateCache) {
