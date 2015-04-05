@@ -5,15 +5,19 @@
  *
  */
 
- canvas {
-  display: block;
- }
+body {
+  background: $color-bg-primary;
+}
 
- .link {
+canvas {
+  display: block;
+}
+
+.link {
   color: $color-dc-primary;
   text-decoration: underline;
 
   &:hover {
     text-decoration: none;
   }
- }
+}

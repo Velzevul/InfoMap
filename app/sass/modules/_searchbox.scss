@@ -1,18 +1,27 @@
 .searchbox {
   position: absolute;
-  top: $global-baseline * 2;
-  left: 50%;
-  width: $global-baseline * 40;
-  margin-left: - $global-baseline * 20;
+  top: 0;
+  left: 0; right: 0;
+  padding: $global-baseline;
 
   &__input {
     @include appearance(none);
+
     display: block;
-    width: 100%;
+    width: $global-baseline * 40;
+    margin: 0 auto;
     padding: $global-baseline/2;
 
     background: white;
     border: 1px solid $color-border;
     border-radius: 3px;
   }
+}
+
+.searchbox-fixed {
+  @extend .searchbox;
+
+  position: fixed;
+  background: white;
+  box-shadow: 0 0 5px rgba(black, 0.3);
 }

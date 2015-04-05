@@ -8,57 +8,18 @@
     <script src="modernizr/modernizr.js"></script>
   </head>
   <body class="app">
-    <!-- <div class="app-header">
-      <div class="l-tricol">
-        <div class="l-tricol__left">
-          <div class="app-header__calendar">Calendar</div>
-        </div>
-
-        <div class="l-tricol__right">
-          <div class="app-header__current-program">
-            <label class="ah-select">
-              <span class="ah-select__dummy">Zbrush</span>
-
-              <select name="" id="" class="ah-select__select">
-                <option value="0">baseline</option>
-                <option value="1">encapsulated - inclusive</option>
-                <option value="2">encapsulated - tooltip</option>
-                <option value="3">encapsulated - label</option>
-                <option value="4">separated - inclusive</option>
-                <option value="5">separated - tooltip</option>
-                <option value="6">separated - label</option>
-                <option value="7">structured - inclusive</option>
-                <option value="8">structured - tooltip</option>
-                <option value="9">structured - label</option>
-              </select>
-            </label>
-          </div>
-        </div>
-
-        <div class="l-tricol__mid">
-          <div class="app-header__app-name">InfoMap: {{ getSelectionLabel() }}</div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="app-sidebar" app-sidebar>
-      <calendar data="month" selection="selection"></calendar>
-    </div> -->
-
     <main class="app-body">
-      <!-- <baseline-view selection="selection"></baseline-view> -->
       <ng-view></ng-view>
     </main>
 
     <script src="jquery/dist/jquery.js"></script>
     <script src="randomcolor/randomColor.js"></script>
-    <script src="momentjs/moment.js"></script>
     <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>
     <script src="d3/d3.js"></script>
     <script src="seedrandom/seedrandom.js"></script>
     <script src="scripts/shuffle.js"></script>
-    
+
     <script src="scripts/templates.js"></script>
 
     <script src="scripts/app.js"></script>
@@ -70,10 +31,6 @@
     <script src="scripts/hostService.js"></script>
     <script src="scripts/userService.js"></script>
 
-    <!--
-    <script src="scripts/listViewDirective.js"></script>
-    <script src="scripts/clusterViewDirective.js"></script>
-    <script src="scripts/clusterViewStatsDirective.js"></script>
-    -->
+    <script src="scripts/postDirective.js"></script>
   </body>
 </html>

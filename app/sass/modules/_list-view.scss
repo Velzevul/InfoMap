@@ -1,35 +1,45 @@
 .list-view {
-  width: 80%;
-  max-width: 1000px;
+  width: 600px;
   margin: 0 auto;
+  margin-top: $global-baseline * 6;
 
-  &__title {
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: $global-baseline/2;
+}
+
+.lv-item {
+  padding: $global-baseline;
+  border-bottom: 1px solid $color-border;
+
+  &__avatar {
+    width: $global-baseline * 4;
+    height: $global-baseline * 4;
+
+    border: 1px solid $color-border;
+    border-radius: 6px;
+    background-size: cover;
+  }
+
+  &__author {
     font-weight: 600;
   }
 
-  &__section {
-    background: white;
-    box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  &__link {
+    color: $color-dc-primary;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__thumb {
+    width: $global-baseline * 10;
+    height: $global-baseline * 7;
+
+    border: 1px solid $color-border;
+    background-size: cover;
+    background-position: center center;
   }
 }
-  .lv-item {
-    padding: $global-baseline * 3/2;
-    margin-bottom: -1px;
-
-    border-bottom: 1px solid $color-border;
-
-    &__user {
-      font-weight: 600;
-
-      color: lighten($color-tx, 30%)
-    }
-
-    &__host {
-      color: $color-dc-primary;
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }

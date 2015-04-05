@@ -25,7 +25,7 @@ angular.module('InfoMap')
               { name: "YutaruHD" },
               { name: "santosh_n_naik" },
               { name: "probio_US" }
-            ]            
+            ]
           },
           {
             host: "visualfxhub",
@@ -33,7 +33,7 @@ angular.module('InfoMap')
             users: [
               { name: "visualfxhub" }
             ]
-          }                                                                             
+          }
         ]
       },
       {
@@ -410,7 +410,8 @@ angular.module('InfoMap')
                 title: item.title,
                 thumb: item.thumb,
                 user: user.name,
-                host: post.host
+                host: post.host,
+                search: [item.title, user.name, post.host].join(' ')
               };
 
               data.push(dataItem);

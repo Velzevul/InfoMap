@@ -27,7 +27,7 @@ angular.module('InfoMap')
       .attr('width', width)
       .attr('height', height);
 
-    var defs = svg.append('defs');          
+    var defs = svg.append('defs');
 
     var data = d3.layout.pack()
       .padding(10)
@@ -50,7 +50,7 @@ angular.module('InfoMap')
           } else {
             result = 'svg-node';
           }
-          
+
           return result;
         })
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
@@ -67,15 +67,15 @@ angular.module('InfoMap')
       .append('circle')
         .attr('class', 'svg-circle--leaf')
         .attr('r', function(d) { return d.r; })
-        .style('fill', function(d) { 
+        .style('fill', function(d) {
           var value = $scope.hosts[d.key].color;
 
-          return 'rgba(' + value.slice(4, value.length - 1) + ', 0.5)'; 
+          return 'rgba(' + value.slice(4, value.length - 1) + ', 0.5)';
         })
-        .style('stroke-color', function(d) { 
+        .style('stroke-color', function(d) {
           var value = $scope.hosts[d.key].color;
 
-          return value; 
+          return value;
         });
 
     posts
@@ -140,7 +140,7 @@ angular.module('InfoMap')
                   .attr("xlink:href", $scope.users[user.user].avatar)
                   .attr('width', user.r * 2)
                   .attr('height', user.r * 2);
-            } 
+            }
           });
 
         svg.selectAll('#group-' + i + ' .svg-user')
@@ -151,7 +151,7 @@ angular.module('InfoMap')
           .attr('cy', function(d) { return d.y + postCircleDimensions.top + offset; })
           .attr('r',  function(d) { return d.r; })
           .style('fill', function(d) { return 'url(#bg-user-' + d.user + ')' });
-      });          
+      });
 
     $scope.doSearch = function(e) {
       // debugger;
@@ -160,11 +160,50 @@ angular.module('InfoMap')
       counter = $timeout(function() {
         console.log($scope.filter);
 
-        d3.selectAll('.svg-user')
+        resources
+          .each(function(d) {
+            if (d.title.toLowerCase().indexOf($scope.filter.toLowerCase()) > -1) {
+              d.match = true;
+            } else {
+              d.match = false;
+            }
+          })
           .style('opacity', function(d) {
-            if ( (d.host.toLowerCase().indexOf($scope.filter.toLowerCase()) == -1) && 
-                 (d.user.toLowerCase().indexOf($scope.filter.toLowerCase()) == -1) ) {
-              return 0.1;
+            if ($scope.filter) {
+              return d.match ? 1 : 0.1;
+            } else {
+              return 1;
+            }
+          });
+
+        posts
+          .each(function(d) {
+            // console.log(d);
+            if (d.parent.match || d.key.toLowerCase().indexOf($scope.filter.toLowerCase()) > -1) {
+              d.match = true;
+            } else {
+              d.match = false;
+            }
+          })
+          .style('opacity', function(d) {
+            if ($scope.filter) {
+              return d.match ? 1 : 0.1;
+            } else {
+              return 1;
+            }
+          });
+
+        d3.selectAll('.svg-user')
+          .each(function(d) {
+            if (d.parent.match || d.user.toLowerCase().indexOf($scope.filter.toLowerCase()) > -1) {
+              d.match = true;
+            } else {
+              d.match = false;
+            }
+          })
+          .style('opacity', function(d) {
+            if ($scope.filter) {
+              return d.match ? 1 : 0.1;
             } else {
               return 1;
             }
