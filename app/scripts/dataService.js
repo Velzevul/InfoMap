@@ -6,7 +6,7 @@ angular.module('InfoMap')
       {
         id: 1,
         title: "ZBrush Sculpting Tutorial for Beginners: Organic & Hard Surface T-Rex",
-        thumb: "http://i.ytimg.com/vi/8Ididulfg9w/maxresdefault.jpg",
+        thumb: "http://edge-cgi.com/wp-content/uploads/2014/11/Zbrush-Sculpting-Tutorial-for-Beginners-Series-Organic-Hard-Surface-T-Rex_660_330-660x330.jpg",
         totalShares: 7,
         posts: [
           {
@@ -55,7 +55,7 @@ angular.module('InfoMap')
         id: 3,
         title: "How to sculpt detailed muscles in Zbrush",
         totalShares: 7,
-        thumb: "http://i.ytimg.com/vi/DyoMb83kI2Y/maxresdefault.jpg",
+        thumb: "http://i.ytimg.com/vi/DyoMb83kI2Y/sddefault.jpg",
         posts: [
           {
             host: "avcgi360",
@@ -112,7 +112,7 @@ angular.module('InfoMap')
         id: 4,
         title: "How to Sculpt Hair in ZBrush Tutorial HD",
         totalShares: 1,
-        thumb: "http://i.ytimg.com/vi/RTvbOzIE_dI/maxresdefault.jpg",
+        thumb: "http://edge-cgi.com/wp-content/uploads/2014/09/Tutorials-How-to-Sculpt-Hair-in-ZBrush-Tutorial-picture-2-HD.jpg",
         posts: [
           {
             host: "cgvilla",
@@ -127,29 +127,17 @@ angular.module('InfoMap')
         id: 5,
         title: "Create Edge Maps in ZBrush",
         totalShares: 5,
-        thumb: "http://www.itsartmag.com/features/itsart/wp-content/uploads/2014/11/Create-Edge-Maps-in-ZBrush-23.jpg",
+        thumb: "http://www.avcgi360.com/wp-content/uploads/2014/11/edge1-750x400.jpg",
         posts: [
-          {
-            host: "avcgi360",
-            url: "http://avcgi360.com",
-            users: [
-              { name: "ActKamal" }
-            ]
-          },
-          {
-            host: "cgmeetup",
-            url: "http://cgmeetup.com",
-            users: [
-              { name: "AiEnRobOtt" },
-              { name: "ZodiakMotion" }
-            ]
-          },
           {
             host: "youtube",
             url: "http://youtube.com",
             users: [
               { name: "kizakiaoi" },
-              { name: "KipMcSkipster" }
+              { name: "KipMcSkipster" },
+              { name: "ActKamal" },
+              { name: "AiEnRobOtt" },
+              { name: "ZodiakMotion" }
             ]
           }
         ]

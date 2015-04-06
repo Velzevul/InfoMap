@@ -7,7 +7,7 @@
 
   background: white;
   border: 1px solid  $color-border;
-  width: 300px;
+  width: 400px;
   // height: 100px;
 
   &__title {
@@ -16,12 +16,21 @@
 
   &__thumb {
     display: block;
-    width: $global-baseline * 8;
-    height: $global-baseline * 5;
+    width: $global-baseline * 10;
+    height: $global-baseline * 7;
 
     border: 1px solid $color-border;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+  }
+
+  &__user {
+    font-weight: 600;
+  }
+
+  &__website {
+    font-weight: 600;
+    color: $color-dc-primary;
   }
 }

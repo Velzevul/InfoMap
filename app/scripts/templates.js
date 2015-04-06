@@ -8,25 +8,37 @@ angular.module("templates/graphical.html", []).run(["$templateCache", function($
     "  <input class=\"searchbox__input\" placeholder=\"search here\" ng-model=\"filter\" ng-keydown=\"doSearch($event)\">\n" +
     "</div>\n" +
     "\n" +
-    "<section id=\"details-popup\" class=\"details-popup\" ng-show=\"details\">\n" +
-    "  <div class=\"l-block-small\">\n" +
-    "    <h1 class=\"details-popup__title\">\n" +
-    "      {{details.title}}\n" +
-    "    </h1>\n" +
-    "  </div>\n" +
+    "<section id=\"details-popup\" class=\"details-popup\" ng-show=\"hovered\">\n" +
     "\n" +
     "  <div class=\"l-media\">\n" +
     "    <div class=\"l-media__figure\">\n" +
-    "      <div class=\"details-popup__thumb\" style=\"background-image: url({{details.thumb}});\"></div>\n" +
+    "      <div class=\"details-popup__thumb\" style=\"background-image: url({{hovered.thumb}});\"></div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"l-media__body\">\n" +
-    "      <div class=\"l-list-inline\" ng-if=\"details.activeLink\">\n" +
-    "        <div class=\"l-list-inline__item\">{{details.activeLink.host}} by @{{details.activeLink.user}}</div>\n" +
+    "      <div class=\"l-block-small\">\n" +
+    "        <h1 class=\"details-popup__title\">\n" +
+    "          {{hovered.title}}\n" +
+    "        </h1>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div ng-if=\"hovered.post\">\n" +
+    "        <div class=\"l-block-small\">\n" +
+    "          post on <span class=\"details-popup__website\">{{hovered.post.key}}</span> by:</div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div ng-repeat=\"tweet in hovered.post.children\">\n" +
+    "          @{{tweet.user}}\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div ng-if=\"!hovered.post\">\n" +
+    "        posted on {{hovered.children.length}} websites\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "</section>");
+    "</section>\n" +
+    "");
 }]);
 
 angular.module("templates/list.html", []).run(["$templateCache", function($templateCache) {

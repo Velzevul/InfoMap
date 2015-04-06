@@ -80,14 +80,16 @@ angular.module('InfoMap')
 
     posts
       .on('mousemove', function(d) {
-        $scope.details = d.parent;
-        $scope.details.activeLink = d.children[0];
-        $scope.$apply();
         detailsPopup.css({'left': d3.event.clientX + 20, 'top': d3.event.clientY + 20});
       })
+      .on('mouseover', function(d) {
+        $scope.hovered = d.parent;
+        $scope.hovered.post = d;
+        $scope.$apply();
+      })
       .on('mouseout', function(d) {
-        $scope.details.activeLink = null;
-        $scope.details = null;
+        $scope.hovered.post = null;
+        $scope.hovered = null;
         $scope.$apply();
       })
       .on('click', function(d) {
@@ -96,12 +98,14 @@ angular.module('InfoMap')
 
     resources
       .on('mousemove', function(d) {
-        $scope.details = d;
-        $scope.$apply();
         detailsPopup.css({'left': d3.event.clientX + 20, 'top': d3.event.clientY + 20});
       })
+      .on('mouseover', function(d) {
+        $scope.hovered = d;
+        $scope.$apply();
+      })
       .on('mouseout', function(d) {
-        $scope.details = null;
+        $scope.hovered = null;
         $scope.$apply();
       });
 
@@ -170,7 +174,7 @@ angular.module('InfoMap')
           })
           .style('opacity', function(d) {
             if ($scope.filter) {
-              return d.match ? 1 : 0.1;
+              return d.match ? 1 : 0.2;
             } else {
               return 1;
             }
@@ -187,7 +191,7 @@ angular.module('InfoMap')
           })
           .style('opacity', function(d) {
             if ($scope.filter) {
-              return d.match ? 1 : 0.1;
+              return d.match ? 1 : 0.2;
             } else {
               return 1;
             }
@@ -203,11 +207,11 @@ angular.module('InfoMap')
           })
           .style('opacity', function(d) {
             if ($scope.filter) {
-              return d.match ? 1 : 0.1;
+              return d.match ? 1 : 0.2;
             } else {
               return 1;
             }
           });
-      }, 200).$$timeoutId;
+      }, 300).$$timeoutId;
     }
   });

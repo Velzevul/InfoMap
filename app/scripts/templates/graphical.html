@@ -4,21 +4,32 @@
   <input class="searchbox__input" placeholder="search here" ng-model="filter" ng-keydown="doSearch($event)">
 </div>
 
-<section id="details-popup" class="details-popup" ng-show="details">
-  <div class="l-block-small">
-    <h1 class="details-popup__title">
-      {{details.title}}
-    </h1>
-  </div>
+<section id="details-popup" class="details-popup" ng-show="hovered">
 
   <div class="l-media">
     <div class="l-media__figure">
-      <div class="details-popup__thumb" style="background-image: url({{details.thumb}});"></div>
+      <div class="details-popup__thumb" style="background-image: url({{hovered.thumb}});"></div>
     </div>
 
     <div class="l-media__body">
-      <div class="l-list-inline" ng-if="details.activeLink">
-        <div class="l-list-inline__item">{{details.activeLink.host}} by @{{details.activeLink.user}}</div>
+      <div class="l-block-small">
+        <h1 class="details-popup__title">
+          {{hovered.title}}
+        </h1>
+      </div>
+
+      <div ng-if="hovered.post">
+        <div class="l-block-small">
+          post on <span class="details-popup__website">{{hovered.post.key}}</span> by:</div>
+        </div>
+
+        <div ng-repeat="tweet in hovered.post.children">
+          @{{tweet.user}}
+        </div>
+      </div>
+
+      <div ng-if="!hovered.post">
+        posted on {{hovered.children.length}} websites
       </div>
     </div>
   </div>
