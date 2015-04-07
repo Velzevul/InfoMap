@@ -6,6 +6,10 @@
   app.config(['$routeProvider',
     function($routeProvider) {
       $routeProvider
+        .when('/setup', {
+          templateUrl: 'templates/setup.html',
+          controller: 'setupController'
+        })
         .when('/graphical/:task', {
           templateUrl: 'templates/graphical.html',
           controller: 'graphicalController'

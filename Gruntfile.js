@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     compass: {
       dist: {
         options: {
-          sassDir: "app/sass",
+          sassDir: ["app/sass"],
           cssDir: "app/css",
           imagesDir: "app/images",
           javascriptsDir: "app/scripts"
@@ -31,6 +31,14 @@ module.exports = function(grunt) {
       }
     },
 
+    clean: {
+      vendorSass: ['app/sass/vendor/*']
+    },
+
+    copy: {
+      bootstrap: { expand: true, cwd: 'bower_components/twbs-bootstrap-sass/assets/stylesheets', src: '**/*', dest: 'app/sass/vendor/bootstrap'}
+    },
+
     watch: {
       css: {
         files: ['app/sass/**/*.scss'],
@@ -50,5 +58,6 @@ module.exports = function(grunt) {
   });
 
   require('load-grunt-tasks')(grunt);
+  grunt.registerTask('install', ['clean', 'copy']);
   grunt.registerTask('default', ['compass', 'html2js', 'express', 'watch', 'express-keepalive']);
 };

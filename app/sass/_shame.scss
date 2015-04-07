@@ -21,3 +21,19 @@ canvas {
     text-decoration: none;
   }
 }
+
+.done-button {
+  position: fixed;
+  bottom: $global-baseline;
+  right: $global-baseline;
+  padding: $global-baseline/2;
+
+  font-weight: 600;
+
+  color: $color-dc-quaternary;
+  text-align: center;
+
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: 3px;
+}

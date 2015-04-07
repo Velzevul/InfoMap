@@ -1,0 +1,51 @@
+<section class="setup-panel">
+  <div class="l-block">
+    <h1 class="setup-panel__title">Setup</div>
+  </div>
+
+  <form ng-submit="setName()"ng-hide="nameIsSet">
+    <div class="l-list l-list--small">
+      <div class="l-list__item">
+        <label>
+          <span class="setup-panel__label">Full Name</span>
+          <input type="text" ng-model="name" class="setup-panel__input">
+        </label>
+      </div>
+
+      <div class="l-list__item">
+        <button class="setup-panel__button">Set name</button>
+      </div>
+    </div>
+  </form>
+
+  <div ng-show="nameIsSet">
+    participant name: <br>
+    <strong>{{name}}</strong>
+
+    <div class="l-block">
+      <button class="link" ng-click="nameIsSet = false">change name</button>
+    </div>
+
+    <div class="l-block-small">
+      <div class="setup-panel__subtitle">List Condition</div>
+    </div>
+
+    <div class="l-block cf">
+      <ul class="l-list l-list--small">
+        <li class="l-list__item"><button ng-disabled="completion.list.train" ng-click="goTo('/list/train')" class="setup-panel__button">training</button></li>
+        <li class="l-list__item"><button ng-disabled="completion.list.task" ng-click="goTo('/list/task')" class="setup-panel__button">task</button></li>
+      </ul>
+    </div>
+
+    <div class="l-block-small">
+      <div class="setup-panel__subtitle">Graphical Condition</div>
+    </div>
+
+    <div class="cf">
+      <ul class="l-list l-list--small">
+        <li class="l-list__item"><button ng-disabled="completion.graphical.train" ng-click="goTo('/graphical/train')" class="setup-panel__button">training</button></li>
+        <li class="l-list__item"><button ng-disabled="completion.graphical.task" ng-click="goTo('/graphical/task')" class="setup-panel__button">task</button></li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,14 +1,21 @@
 angular.module('InfoMap')
-  .controller('graphicalController', function($scope, $timeout, $routeParams, DataService, HostService, UserService) {
+  .controller('graphicalController', function($scope, $timeout, $routeParams, $location, DataService, HostService, UserService, LoggerService) {
     'use strict';
 
-    var task = $routeParams.task;
+    if (LoggerService.getName() == null) {
+      $location.path('/setup');
+    }
+
+    var task = $routeParams.task,
+      completion = LoggerService.getCompletion();
 
     if (task == 'train') {
+      completion.graphical.train = true;
       $scope.resources = DataService.getGraphicalTrain();
       $scope.hosts = HostService.getTrain();
       $scope.users = UserService.getTrain();
     } else {
+      completion.graphical.task = true;
       $scope.resources = DataService.getGraphicalTask();
       $scope.hosts = HostService.getTask();
       $scope.users = UserService.getTask();
@@ -213,5 +220,11 @@ angular.module('InfoMap')
             }
           });
       }, 300).$$timeoutId;
-    }
+    };
+
+    $scope.finishTask = function() {
+      if (confirm('Please confirm completion of all tasks')) {
+        $location.path('/setup');
+      }
+    };
   });

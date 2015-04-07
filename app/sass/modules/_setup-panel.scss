@@ -1,0 +1,55 @@
+.setup-panel {
+  width: 300px;
+  margin: $global-baseline*2 auto 0 auto;
+  padding: $global-baseline;
+
+  background: white;
+  border-radius: $global-baseline/2;
+  border: 1px solid $color-border;
+
+  &__title {
+    display: block;
+
+    font-weight: 600;
+    font-size: $global-baseline * 2;
+
+    text-align: center;
+  }
+
+  &__subtitle {
+    display: block;
+
+    font-weight: 600;
+  }
+
+  &__label {
+    display: block;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    padding: $global-baseline / 2;
+
+    border: 1px solid $color-border;
+    border-radius: 4px;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    padding: $global-baseline/2 0;
+
+    font-weight: 600;
+
+    text-align: center;
+    color: white;
+
+    background: $color-dc-primary;
+    border-radius: 4px;
+
+    &:disabled {
+      background: $color-border;
+    }
+  }
+}
