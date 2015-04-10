@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.cors import CORS
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -12,12 +13,14 @@ CORS(app)
 
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    counterbalancing = db.Column(db.String(50))
     participant_name = db.Column(db.String(50))
     condition = db.Column(db.String(20))
-    tutorial_name = db.Column(db.String(255))
+    tutorial_id = db.Column(db.Integer)
     tutorial_host = db.Column(db.String(20))
-    tweet_author = db.Column(db.String(20))
+    tutorial_name = db.Column(db.String(255))
     reason = db.Column(db.String(255))
+    datetime = db.Column(db.DateTime)
 
 
 @app.route('/')
@@ -29,24 +32,25 @@ def index():
 
 @app.route('/log', methods=['POST'])
 def log():
-    print('started')
+    data = request.get_json()
     try:
-        data = Log(participant_name=request.form['participantName'],
-                   condition=request.form['condition'],
-                   tutorial_name=request.form['tutorialName'],
-                   tutorial_host=request.form['tutorialHost'],
-                   tweet_author=request.form['tweetAuthor'],
-                   reason=request.form['reason'])
+        log = Log(participant_name=data.get('participantName'),
+                  counterbalancing=data.get('counterbalancing'),
+                  tutorial_id=data.get('tutorialId'),
+                  condition=data.get('condition'),
+                  tutorial_name=data.get('tutorialName'),
+                  tutorial_host=data.get('tutorialHost'),
+                  reason=data.get('reason'),
+                  datetime=datetime.now())
     except Exception as e:
         print('Cannot create record')
         print(request.form)
         print(e)
         return False
 
-    print('created')
-    db.session.add(data)
+    db.session.add(log)
     db.session.commit()
-    print('saved')
+    print('log saved')
     return 'Saved'
 
 

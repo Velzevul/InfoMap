@@ -2,20 +2,26 @@ angular.module('InfoMap')
   .controller('setupController', function($scope, $location, LoggerService) {
     'use strict';
 
-    $scope.name = LoggerService.getName();
-    $scope.nameIsSet = !($scope.name == null);
-    $scope.completion = LoggerService.getCompletion();
+    $scope.status = LoggerService.getStatus();
 
-    // LoggerService.start();
+    $scope.setCounterbalancing = function(i,j) {
+      LoggerService.setCounterbalancing(i,j);
+      LoggerService.setSetupStage('name');
+    };
 
     $scope.setName = function() {
-      if ($scope.name) {
-        LoggerService.setName($scope.name);
-        $scope.nameIsSet = true;
+      if ($scope.tempName) {
+        LoggerService.setName($scope.tempName);
+        LoggerService.setSetupStage('tasks');
       }
     };
 
-    $scope.goTo = function(path) {
-      $location.path(path);
+    $scope.workOn = function(trial, task) {
+      LoggerService.workOn(trial, task);
+      $location.path('/' + [trial.condition, task].join('/'));
+    };
+
+    $scope.isCompleted = function(trial, task) {
+      return $scope.status.completion[trial.condition][task];
     };
   });

@@ -3,12 +3,25 @@
     <h1 class="setup-panel__title">Setup</div>
   </div>
 
-  <form ng-submit="setName()"ng-hide="nameIsSet">
+  <div ng-show="!status.setupStage">
+    <div class="l-block-small">
+      <div class="setup-panel__subtitle">Select counterbalancing</div>
+    </div>
+
+    <div class="l-list l-list--small">
+      <li class="l-list__item"><button class="setup-panel__button" ng-click="setCounterbalancing(0,0)">List, 3d Studio Max</button></li>
+      <li class="l-list__item"><button class="setup-panel__button" ng-click="setCounterbalancing(0,1)">List, Maya</button></li>
+      <li class="l-list__item"><button class="setup-panel__button" ng-click="setCounterbalancing(1,0)">Graphical, 3d Studio Max</button></li>
+      <li class="l-list__item"><button class="setup-panel__button" ng-click="setCounterbalancing(1,1)">Graphical, Maya</button></li>
+    </div>
+  </div>
+
+  <form ng-submit="setName()" ng-show="status.setupStage == 'name'">
     <div class="l-list l-list--small">
       <div class="l-list__item">
         <label>
           <span class="setup-panel__label">Full Name</span>
-          <input type="text" ng-model="name" class="setup-panel__input">
+          <input type="text" ng-model="tempName" class="setup-panel__input">
         </label>
       </div>
 
@@ -18,34 +31,25 @@
     </div>
   </form>
 
-  <div ng-show="nameIsSet">
-    participant name: <br>
-    <strong>{{name}}</strong>
-
+  <div ng-show="status.setupStage == 'tasks'">
     <div class="l-block">
-      <button class="link" ng-click="nameIsSet = false">change name</button>
+      participant name: <br>
+      <strong>{{status.participantName}}</strong>
     </div>
 
-    <div class="l-block-small">
-      <div class="setup-panel__subtitle">List Condition</div>
-    </div>
+    <div class="l-list">
+      <div class="l-list__item" ng-repeat="trial in status.counterbalancing">
+        <div class="l-block-small">
+          <div class="setup-panel__subtitle">{{trial.condition}} condition ({{trial.dataset}})</div>
+        </div>
 
-    <div class="l-block cf">
-      <ul class="l-list l-list--small">
-        <li class="l-list__item"><button ng-disabled="completion.list.train" ng-click="goTo('/list/train')" class="setup-panel__button">training</button></li>
-        <li class="l-list__item"><button ng-disabled="completion.list.task" ng-click="goTo('/list/task')" class="setup-panel__button">task</button></li>
-      </ul>
-    </div>
-
-    <div class="l-block-small">
-      <div class="setup-panel__subtitle">Graphical Condition</div>
-    </div>
-
-    <div class="cf">
-      <ul class="l-list l-list--small">
-        <li class="l-list__item"><button ng-disabled="completion.graphical.train" ng-click="goTo('/graphical/train')" class="setup-panel__button">training</button></li>
-        <li class="l-list__item"><button ng-disabled="completion.graphical.task" ng-click="goTo('/graphical/task')" class="setup-panel__button">task</button></li>
-      </ul>
+        <div class="l-block cf">
+          <ul class="l-list l-list--small">
+            <li class="l-list__item"><button ng-disabled="isCompleted(trial, 'train')" ng-click="workOn(trial, 'train')" class="setup-panel__button">training</button></li>
+            <li class="l-list__item"><button ng-disabled="isCompleted(trial, 'task' )" ng-click="workOn(trial, 'task' )" class="setup-panel__button">task</button></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -87,7 +87,7 @@ angular.module('InfoMap')
     };
 
     return {
-      getTrain: function() {
+      get: function() {
         return mockTrain;
       }
     }

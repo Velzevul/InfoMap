@@ -2,19 +2,19 @@ angular.module('InfoMap')
   .factory('HostService', function() {
     'use strict';
 
-    var mockTrain = [ 'youtube', 
-                      'visualfxhub', 
-                      'vimeo', 
-                      'avcgi360', 
-                      'scoop', 
-                      'quora', 
-                      'blogspot', 
-                      'wordpress', 
-                      'pandawhale', 
-                      'pinterest', 
-                      'cgvilla', 
-                      'cgmeetup', 
-                      'cgtrader', 
+    var mockTrain = [ 'youtube',
+                      'visualfxhub',
+                      'vimeo',
+                      'avcgi360',
+                      'scoop',
+                      'quora',
+                      'blogspot',
+                      'wordpress',
+                      'pandawhale',
+                      'pinterest',
+                      'cgvilla',
+                      'cgmeetup',
+                      'cgtrader',
                       'devianart',
                       'lesterbanks',
                       'itsart',
@@ -38,11 +38,10 @@ angular.module('InfoMap')
       'rgb(250,247,139)',
       'rgb(72,207,207)',
       'rgb(14,104,19)'
-    ]; 
-
+    ];
 
     return {
-      getTrain: function() {
+      get: function() {
         var mock = {};
 
         mockTrain.forEach(function(host, i) {
@@ -50,7 +49,7 @@ angular.module('InfoMap')
             color: colors[i]
           }
         });
-        
+
         return mock;
       }
     }

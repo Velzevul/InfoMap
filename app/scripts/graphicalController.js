@@ -1,25 +1,12 @@
 angular.module('InfoMap')
-  .controller('graphicalController', function($scope, $timeout, $routeParams, $location, DataService, HostService, UserService, LoggerService) {
+  .controller('graphicalController', function($scope, $timeout, $routeParams, $location, DataService, LoggerService) {
     'use strict';
 
-    if (LoggerService.getName() == null) {
+    if (LoggerService.getStatus().participantName == null) {
       $location.path('/setup');
     }
 
-    var task = $routeParams.task,
-      completion = LoggerService.getCompletion();
-
-    if (task == 'train') {
-      completion.graphical.train = true;
-      $scope.resources = DataService.getGraphicalTrain();
-      $scope.hosts = HostService.getTrain();
-      $scope.users = UserService.getTrain();
-    } else {
-      completion.graphical.task = true;
-      $scope.resources = DataService.getGraphicalTask();
-      $scope.hosts = HostService.getTask();
-      $scope.users = UserService.getTask();
-    }
+    $scope.resources = DataService.getGraphical();
 
     $scope.details = null;
 
@@ -75,12 +62,12 @@ angular.module('InfoMap')
         .attr('class', 'svg-circle--leaf')
         .attr('r', function(d) { return d.r; })
         .style('fill', function(d) {
-          var value = $scope.hosts[d.key].color;
+          var value = d.values[0].color;
 
           return 'rgba(' + value.slice(4, value.length - 1) + ', 0.5)';
         })
         .style('stroke-color', function(d) {
-          var value = $scope.hosts[d.key].color;
+          var value = d.values[0].color;
 
           return value;
         });
@@ -100,7 +87,19 @@ angular.module('InfoMap')
         $scope.$apply();
       })
       .on('click', function(d) {
-        alert('going to ' + d.host);
+        var reason = prompt('Please, justify why did you select this post'),
+            logData = {};
+
+        if (reason && reason != '') {
+          logData.tutorialName = d.parent.title;
+          logData.tutorialHost = d.key;
+          logData.reason = reason;
+          logData.tutorialId = d.parent.id;
+
+          LoggerService.log(logData);
+        } else if (reason == '') {
+          alert('You must justify your selection');
+        }
       });
 
     resources
@@ -141,17 +140,17 @@ angular.module('InfoMap')
 
         usersData
           .forEach(function(user) {
-           if (!document.getElementById('bg-user-' + user.user)) {
+            if (!document.getElementById('bg-user-' + user.user.name)) {
               defs
                 .append("pattern")
-                  .attr("id", "bg-user-" + user.user)
+                  .attr("id", "bg-user-" + user.user.name)
                   .attr('width', user.r * 2)
                   .attr('height', user.r * 2)
                 .append("image")
-                  .attr("xlink:href", $scope.users[user.user].avatar)
+                  .attr("xlink:href", user.user.avatar)
                   .attr('width', user.r * 2)
                   .attr('height', user.r * 2);
-            }
+              }
           });
 
         svg.selectAll('#group-' + i + ' .svg-user')
@@ -161,11 +160,10 @@ angular.module('InfoMap')
           .attr('cx', function(d) { return d.x + postCircleDimensions.left + offset; })
           .attr('cy', function(d) { return d.y + postCircleDimensions.top + offset; })
           .attr('r',  function(d) { return d.r; })
-          .style('fill', function(d) { return 'url(#bg-user-' + d.user + ')' });
+          .style('fill', function(d) { return 'url(#bg-user-' + d.user.name + ')' });
       });
 
     $scope.doSearch = function(e) {
-      // debugger;
       clearTimeout(counter);
 
       counter = $timeout(function() {
@@ -206,7 +204,7 @@ angular.module('InfoMap')
 
         d3.selectAll('.svg-user')
           .each(function(d) {
-            if (d.parent.match || d.user.toLowerCase().indexOf($scope.filter.toLowerCase()) > -1) {
+            if (d.parent.match || d.user.name.toLowerCase().indexOf($scope.filter.toLowerCase()) > -1) {
               d.match = true;
             } else {
               d.match = false;

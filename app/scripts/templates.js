@@ -27,7 +27,7 @@ angular.module("templates/graphical.html", []).run(["$templateCache", function($
     "        </div>\n" +
     "\n" +
     "        <div ng-repeat=\"tweet in hovered.post.children\">\n" +
-    "          @{{tweet.user}}\n" +
+    "          @{{tweet.user.name}}\n" +
     "        </div>\n" +
     "      </div>\n" +
     "\n" +
@@ -61,14 +61,14 @@ angular.module("templates/post.html", []).run(["$templateCache", function($templ
     "<div class=\"lv-item\">\n" +
     "  <div class=\"l-media\">\n" +
     "    <div class=\"l-media__figure\">\n" +
-    "      <div class=\"lv-item__avatar\" style=\"background-image: url({{getAvatar(post.user)}});\"></div>\n" +
+    "      <div class=\"lv-item__avatar\" style=\"background-image: url({{post.user.avatar}});\"></div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"l-media__body\">\n" +
-    "      <div class=\"lv-item__author\">@{{post.user}}</div>\n" +
+    "      <div class=\"lv-item__author\">@{{post.user.name}}</div>\n" +
     "\n" +
     "      <div class=\"l-block-small\">\n" +
-    "        <div class=\"lv-item__text\">{{post.title}} <a class=\"lv-item__link\" href=\"\">see on {{post.host}}</a></div>\n" +
+    "        <div class=\"lv-item__text\">{{post.title}} <button class=\"lv-item__link\" ng-click=\"log()\">see on {{post.host}}</button></div>\n" +
     "      </div>\n" +
     "\n" +
     "      <div class=\"lv-item__thumb\" style=\"background-image: url({{post.thumb}});\"></div>\n" +
@@ -85,12 +85,25 @@ angular.module("templates/setup.html", []).run(["$templateCache", function($temp
     "    <h1 class=\"setup-panel__title\">Setup</div>\n" +
     "  </div>\n" +
     "\n" +
-    "  <form ng-submit=\"setName()\"ng-hide=\"nameIsSet\">\n" +
+    "  <div ng-show=\"!status.setupStage\">\n" +
+    "    <div class=\"l-block-small\">\n" +
+    "      <div class=\"setup-panel__subtitle\">Select counterbalancing</div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"l-list l-list--small\">\n" +
+    "      <li class=\"l-list__item\"><button class=\"setup-panel__button\" ng-click=\"setCounterbalancing(0,0)\">List, 3d Studio Max</button></li>\n" +
+    "      <li class=\"l-list__item\"><button class=\"setup-panel__button\" ng-click=\"setCounterbalancing(0,1)\">List, Maya</button></li>\n" +
+    "      <li class=\"l-list__item\"><button class=\"setup-panel__button\" ng-click=\"setCounterbalancing(1,0)\">Graphical, 3d Studio Max</button></li>\n" +
+    "      <li class=\"l-list__item\"><button class=\"setup-panel__button\" ng-click=\"setCounterbalancing(1,1)\">Graphical, Maya</button></li>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <form ng-submit=\"setName()\" ng-show=\"status.setupStage == 'name'\">\n" +
     "    <div class=\"l-list l-list--small\">\n" +
     "      <div class=\"l-list__item\">\n" +
     "        <label>\n" +
     "          <span class=\"setup-panel__label\">Full Name</span>\n" +
-    "          <input type=\"text\" ng-model=\"name\" class=\"setup-panel__input\">\n" +
+    "          <input type=\"text\" ng-model=\"tempName\" class=\"setup-panel__input\">\n" +
     "        </label>\n" +
     "      </div>\n" +
     "\n" +
@@ -100,34 +113,25 @@ angular.module("templates/setup.html", []).run(["$templateCache", function($temp
     "    </div>\n" +
     "  </form>\n" +
     "\n" +
-    "  <div ng-show=\"nameIsSet\">\n" +
-    "    participant name: <br>\n" +
-    "    <strong>{{name}}</strong>\n" +
-    "\n" +
+    "  <div ng-show=\"status.setupStage == 'tasks'\">\n" +
     "    <div class=\"l-block\">\n" +
-    "      <button class=\"link\" ng-click=\"nameIsSet = false\">change name</button>\n" +
+    "      participant name: <br>\n" +
+    "      <strong>{{status.participantName}}</strong>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"l-block-small\">\n" +
-    "      <div class=\"setup-panel__subtitle\">List Condition</div>\n" +
-    "    </div>\n" +
+    "    <div class=\"l-list\">\n" +
+    "      <div class=\"l-list__item\" ng-repeat=\"trial in status.counterbalancing\">\n" +
+    "        <div class=\"l-block-small\">\n" +
+    "          <div class=\"setup-panel__subtitle\">{{trial.condition}} condition ({{trial.dataset}})</div>\n" +
+    "        </div>\n" +
     "\n" +
-    "    <div class=\"l-block cf\">\n" +
-    "      <ul class=\"l-list l-list--small\">\n" +
-    "        <li class=\"l-list__item\"><button ng-disabled=\"completion.list.train\" ng-click=\"goTo('/list/train')\" class=\"setup-panel__button\">training</button></li>\n" +
-    "        <li class=\"l-list__item\"><button ng-disabled=\"completion.list.task\" ng-click=\"goTo('/list/task')\" class=\"setup-panel__button\">task</button></li>\n" +
-    "      </ul>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"l-block-small\">\n" +
-    "      <div class=\"setup-panel__subtitle\">Graphical Condition</div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"cf\">\n" +
-    "      <ul class=\"l-list l-list--small\">\n" +
-    "        <li class=\"l-list__item\"><button ng-disabled=\"completion.graphical.train\" ng-click=\"goTo('/graphical/train')\" class=\"setup-panel__button\">training</button></li>\n" +
-    "        <li class=\"l-list__item\"><button ng-disabled=\"completion.graphical.task\" ng-click=\"goTo('/graphical/task')\" class=\"setup-panel__button\">task</button></li>\n" +
-    "      </ul>\n" +
+    "        <div class=\"l-block cf\">\n" +
+    "          <ul class=\"l-list l-list--small\">\n" +
+    "            <li class=\"l-list__item\"><button ng-disabled=\"isCompleted(trial, 'train')\" ng-click=\"workOn(trial, 'train')\" class=\"setup-panel__button\">training</button></li>\n" +
+    "            <li class=\"l-list__item\"><button ng-disabled=\"isCompleted(trial, 'task' )\" ng-click=\"workOn(trial, 'task' )\" class=\"setup-panel__button\">task</button></li>\n" +
+    "          </ul>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</section>\n" +

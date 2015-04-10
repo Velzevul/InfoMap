@@ -1,14 +1,14 @@
 <div class="lv-item">
   <div class="l-media">
     <div class="l-media__figure">
-      <div class="lv-item__avatar" style="background-image: url({{getAvatar(post.user)}});"></div>
+      <div class="lv-item__avatar" style="background-image: url({{post.user.avatar}});"></div>
     </div>
 
     <div class="l-media__body">
-      <div class="lv-item__author">@{{post.user}}</div>
+      <div class="lv-item__author">@{{post.user.name}}</div>
 
       <div class="l-block-small">
-        <div class="lv-item__text">{{post.title}} <a class="lv-item__link" href="">see on {{post.host}}</a></div>
+        <div class="lv-item__text">{{post.title}} <button class="lv-item__link" ng-click="log()">see on {{post.host}}</button></div>
       </div>
 
       <div class="lv-item__thumb" style="background-image: url({{post.thumb}});"></div>
