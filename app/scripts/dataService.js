@@ -30,11 +30,12 @@ angular.module('InfoMap')
       if (status.currentTask == 'train') {
         dataset = window.dataTrain;
       } else {
-        dataset = angular.copy(window.dataSkeleton);
 
         if (status.currentTrial.dataset == '3dmax') {
+          dataset = angular.copy(window.dataSkeleton);
           mask = window.mask3dMax;
         } else if (status.currentTrial.dataset == 'maya') {
+          dataset = angular.copy(window.dataSkeleton2);
           mask = window.maskMaya;
         }
 

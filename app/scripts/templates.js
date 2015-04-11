@@ -27,7 +27,13 @@ angular.module("templates/graphical.html", []).run(["$templateCache", function($
     "        </div>\n" +
     "\n" +
     "        <div ng-repeat=\"tweet in hovered.post.children\">\n" +
-    "          @{{tweet.user.name}}\n" +
+    "          <div class=\"l-list-inline l-list-inline--collapsed\">\n" +
+    "            <div class=\"l-list-inline__item is-middle-aligned\">\n" +
+    "              <div class=\"details-popup__avatar\" style=\"background-image: url({{tweet.user.avatar}});\"></div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"l-list-inline__item is-middle-aligned\">@{{tweet.user.name}}</div>\n" +
+    "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "\n" +

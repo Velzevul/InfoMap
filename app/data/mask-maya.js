@@ -65,8 +65,12 @@ maskMaya = {
       "thumb": "https://i.ytimg.com/vi_webp/E6IX17k5Sc4/mqdefault.webp"
     },
     {
-      "title": "Autodesk Maya 2014 - Low Polygon Sword Modeling",
+      "title": "Autodesk Maya - Low Polygon Sword Modeling",
       "thumb": "https://i.ytimg.com/vi/eEjsidTdrQE/mqdefault.jpg"
+    },
+    {
+      "title": "Autodesk Maya - Light Bulb Modeling",
+      "thumb": "https://i.ytimg.com/vi/VGTijnmRYqc/mqdefault.jpg"
     }
   ],
   "websites": [

@@ -23,7 +23,13 @@
         </div>
 
         <div ng-repeat="tweet in hovered.post.children">
-          @{{tweet.user.name}}
+          <div class="l-list-inline l-list-inline--collapsed">
+            <div class="l-list-inline__item is-middle-aligned">
+              <div class="details-popup__avatar" style="background-image: url({{tweet.user.avatar}});"></div>
+            </div>
+
+            <div class="l-list-inline__item is-middle-aligned">@{{tweet.user.name}}</div>
+          </div>
         </div>
       </div>
 
