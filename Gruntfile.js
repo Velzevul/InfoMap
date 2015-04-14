@@ -38,7 +38,7 @@ module.exports = function(grunt) {
               'bower_components/angular-route/angular-route.js',
               'bower_components/d3/d3.js',
               'bower_components/seedrandom/seedrandom.js',
-              'bower_components/scripts/shuffle.js'],
+              'app/scripts/shuffle.js'],
         dest: 'dist/scripts/dependencies.concat.js'
       },
       app: {
