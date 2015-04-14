@@ -170,4 +170,4 @@ mask3dMax = {
       "avatar": "https://pbs.twimg.com/profile_images/477873742249349121/Inl9RcDM_normal.jpeg"
     }
   ]
-}
+};

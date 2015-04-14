@@ -5,28 +5,34 @@
     <title>InfoMaps</title>
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <link rel="stylesheet" href="css/main.css">
+    <!-- build:[src] scripts/ -->
     <script src="modernizr/modernizr.js"></script>
+    <!-- /build -->
   </head>
   <body class="app">
     <main class="app-body">
       <ng-view></ng-view>
     </main>
 
+    <!-- build:js scripts/dependencies.concat.js -->
     <script src="jquery/dist/jquery.js"></script>
-    <script src="randomcolor/randomColor.js"></script>
     <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>
     <script src="d3/d3.js"></script>
     <script src="seedrandom/seedrandom.js"></script>
     <script src="scripts/shuffle.js"></script>
+    <!-- /build -->
 
-    <script src="scripts/templates.js"></script>
-
+    <!-- build:js scripts/data.concat.js -->
     <script src="data/skeleton.js"></script>
     <script src="data/skeleton2.js"></script>
     <script src="data/data-train.js"></script>
     <script src="data/mask-3dmax.js"></script>
     <script src="data/mask-maya.js"></script>
+    <!-- /build -->
+
+    <!-- build:js scripts/app.concat.js -->
+    <script src="scripts/templates.js"></script>
 
     <script src="scripts/app.js"></script>
 
@@ -40,5 +46,6 @@
     <script src="scripts/listController.js"></script>
 
     <script src="scripts/postDirective.js"></script>
+    <!-- /build -->
   </body>
 </html>

@@ -73,18 +73,18 @@ angular.module('InfoMap')
         data.counterbalancing = status.counterbalancing[0].condition + ' ' + status.counterbalancing[0].dataset;
 
         if (status.currentTask == 'task') {
-          $http({
-            url: serverUrl + 'log',
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            data: JSON.stringify(data)
-          })
-            .success(function() {
-              console.log('log data saved');
-            })
-            .error(function() {
-              console.error('Could not save the log');
-            });
+          // $http({
+          //   url: serverUrl + 'log',
+          //   method: 'GET',
+          //   headers: {'Content-Type': 'application/json'},
+          //   data: JSON.stringify(data)
+          // })
+          //   .success(function() {
+          //     console.log('log data saved');
+          //   })
+          //   .error(function() {
+          //     console.error('Could not save the log');
+          //   });
         } else {
           console.log('training data catched:');
           console.log(data);

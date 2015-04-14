@@ -31,12 +31,50 @@ module.exports = function(grunt) {
       }
     },
 
+    concat: {
+      dependencies: {
+        src: ['bower_components/jquery/dist/jquery.js',
+              'bower_components/angular/angular.js',
+              'bower_components/angular-route/angular-route.js',
+              'bower_components/d3/d3.js',
+              'bower_components/seedrandom/seedrandom.js',
+              'bower_components/scripts/shuffle.js'],
+        dest: 'dist/scripts/dependencies.concat.js'
+      },
+      app: {
+        src: ['app/scripts/app.js',
+              'app/scripts/templates.js',
+              'app/scripts/*Service.js',
+              'app/scripts/*Controller.js',
+              'app/scripts/*Directive.js'],
+        dest: 'dist/scripts/app.concat.js'
+      },
+      data: {
+        src: [
+          'app/data/skeleton.js',
+          'app/data/skeleton2.js',
+          'app/data/data-train.js',
+          'app/data/mask-3dmax.js',
+          'app/data/mask-maya.js'
+        ],
+        dest: 'dist/scripts/data.concat.js'
+      }
+    },
+
     clean: {
-      vendorSass: ['app/sass/vendor/*']
+      dist: ['dist/*']
     },
 
     copy: {
-      bootstrap: { expand: true, cwd: 'bower_components/twbs-bootstrap-sass/assets/stylesheets', src: '**/*', dest: 'app/sass/vendor/bootstrap'}
+      modernizr: { expand: true, cwd: 'bower_components/', src: 'modernizr/modernizr.js', dest: 'dist/scripts/', flatten: true },
+      css: { expand: true, src: 'app/css/*.css', dest: 'dist/css/', flatten: true }
+    },
+
+    processhtml: {
+      dist: {
+        src: 'app/index.html',
+        dest: 'dist/index.html'
+      }
     },
 
     watch: {
@@ -58,6 +96,6 @@ module.exports = function(grunt) {
   });
 
   require('load-grunt-tasks')(grunt);
-  grunt.registerTask('install', ['clean', 'copy']);
   grunt.registerTask('default', ['compass', 'html2js', 'express', 'watch', 'express-keepalive']);
+  grunt.registerTask('dist',    ['compass', 'html2js', 'clean:dist', 'concat', 'copy', 'processhtml:dist']);
 };

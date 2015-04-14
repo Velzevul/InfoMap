@@ -359,4 +359,4 @@ dataTrain = {
     { "name": "AiEnRobOtt", "avatar": "https://pbs.twimg.com/profile_images/478511428832210946/zEaztc6C_bigger.jpeg" },
     { "name": "kizakiaoi", "avatar": "https://pbs.twimg.com/profile_images/545596935982182401/ptr44Zfy_400x400.jpeg" }
   ]
-}
+};

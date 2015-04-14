@@ -174,4 +174,4 @@ maskMaya = {
       "avatar": "https://pbs.twimg.com/profile_images/1847816978/Logo_01_5_Ex.jpg.scaled500_bigger.jpeg"
     }
   ]
-}
+};

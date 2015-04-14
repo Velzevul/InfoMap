@@ -3,7 +3,7 @@ angular.module('InfoMap')
     'use strict';
 
     if (LoggerService.getStatus().participantName == null) {
-      $location.path('/setup');
+      $location.path('/');
     }
 
     $scope.resources = DataService.getGraphical();
@@ -87,19 +87,19 @@ angular.module('InfoMap')
         $scope.$apply();
       })
       .on('click', function(d) {
-        var reason = prompt('Please, justify why did you select this post'),
-            logData = {};
+        // var reason = prompt('Please, justify why did you select this post'),
+        //     logData = {};
 
-        if (reason && reason != '') {
-          logData.tutorialName = d.parent.title;
-          logData.tutorialHost = d.key;
-          logData.reason = reason;
-          logData.tutorialId = d.parent.id;
+        // if (reason && reason != '') {
+        //   logData.tutorialName = d.parent.title;
+        //   logData.tutorialHost = d.key;
+        //   logData.reason = reason;
+        //   logData.tutorialId = d.parent.id;
 
-          LoggerService.log(logData);
-        } else if (reason == '') {
-          alert('You must justify your selection');
-        }
+        //   LoggerService.log(logData);
+        // } else if (reason == '') {
+        //   alert('You must justify your selection');
+        // }
       });
 
     resources
@@ -222,7 +222,7 @@ angular.module('InfoMap')
 
     $scope.finishTask = function() {
       if (confirm('Please confirm completion of all tasks')) {
-        $location.path('/setup');
+        $location.path('/');
       }
     };
   });

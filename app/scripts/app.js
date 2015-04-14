@@ -5,7 +5,7 @@
 
   app.config(function($routeProvider) {
     $routeProvider
-      .when('/setup', {
+      .when('/', {
         templateUrl: 'templates/setup.html',
         controller: 'setupController'
       })
